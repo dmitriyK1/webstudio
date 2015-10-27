@@ -1,3 +1,75 @@
-<button class="btn">this is button</button>
-<br/>
-<button class="btn --large">large button</button>
+<!DOCTYPE html>
+<html lang="ru">
+
+	<head>
+		<script type="text/javascript">
+			WebFontConfig = {
+				google:
+				{
+					families: ['Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic:latin']
+				},
+				timeout: 2000
+			};
+			(function()
+			{
+				var wf = document.createElement('script');
+				wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+					'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+				wf.type = 'text/javascript';
+				wf.async = 'true';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(wf, s);
+			})()
+		</script>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="cleartype" content="on">
+		<title>Styleguide</title>
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link href="css/main.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<div class="preload-images"></div>
+		<div class="mainwrap">
+			<header class="header">
+				<div class="header__inner">
+					<div class="header__logo"><span>modus</span>versus</div>
+					<ul class="header__menu">
+						<li class="header__menu-item --active"><a href="javascript:void(0);" class="header__menu-link">home</a></li>
+						<li class="header__menu-item"><a href="javascript:void(0);" class="header__menu-link">about</a></li>
+						<li class="header__menu-item"><a href="javascript:void(0);" class="header__menu-link">services</a></li>
+						<li class="header__menu-item --portfolio"><a href="javascript:void(0);" class="header__menu-link">portfolio</a>
+							<div class="header__dropdown-wrap">
+								<ul class="header__dropdown">
+									<li class="header__dropdown-item"><a href="javascript:void(0);" class="header__dropdown-link">Portfolio 2 column page</a></li>
+									<li class="header__dropdown-item"><a href="javascript:void(0);" class="header__dropdown-link">Portfolio 2 column page</a></li>
+									<li class="header__dropdown-item"><a href="javascript:void(0);" class="header__dropdown-link">Portfolio 2 column page</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="header__menu-item"><a href="javascript:void(0);" class="header__menu-link">blog</a></li>
+						<li class="header__menu-item"><a href="javascript:void(0);" class="header__menu-link">features</a></li>
+						<li class="header__menu-item"><a href="javascript:void(0);" class="header__menu-link">contacts</a></li>
+					</ul>
+				</div>
+			</header>
+			<button class="btn">this is button</button>
+			<br>
+			<button class="btn --large">large button</button>
+			<h1>Images lazy-loading:</h1><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="http://7-themes.com/data_images/out/42/6914793-tropical-beach-images.jpg" style="max-width: 50%; vertical-align: top;"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+			data-src="http://7-themes.com/data_images/out/42/6914793-tropical-beach-images.jpg" style="max-width: 50%; vertical-align: top;"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="http://7-themes.com/data_images/out/42/6914793-tropical-beach-images.jpg"
+			style="max-width: 50%; vertical-align: top;"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="http://7-themes.com/data_images/out/42/6914793-tropical-beach-images.jpg" style="max-width: 50%; vertical-align: top;"></div>
+		<footer
+		class="footer">
+			<div class="footer__inner">Footer</div>
+			</footer>
+			<script src="js/main.js"></script>
+			<script src="http://192.168.0.100:8080/target/target-script-min.js#anonymous"></script>
+	</body>
+
+</html>
