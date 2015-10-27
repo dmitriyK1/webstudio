@@ -2,6 +2,25 @@
 <html lang="ru">
 
 	<head>
+		<script type="text/javascript">
+			WebFontConfig = {
+				google:
+				{
+					families: ['Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic:latin']
+				},
+				timeout: 2000
+			};
+			(function()
+			{
+				var wf = document.createElement('script');
+				wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+					'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+				wf.type = 'text/javascript';
+				wf.async = 'true';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(wf, s);
+			})()
+		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +29,6 @@
 		<meta name="description" content="">
 		<meta name="keywords" content="">
 		<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300,300italic,400italic,600italic,700italic,800italic" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		<link href="css/main.css" rel="stylesheet">
 	</head>
