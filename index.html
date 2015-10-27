@@ -1,62 +1,115 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru-RU">
 
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="cleartype" content="on">
-		<title>Template</title>
-		<meta name="description" content="">
-		<meta name="keywords" content="">
-		<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300,300italic,400italic,600italic,700italic,800italic" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-		<link href="css/main.css" rel="stylesheet">
-	</head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link href="favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" />
+    <title></title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    html {
+        min-height: 100%;
+    }
+    body {
+        background: #fff;
+        background: url('data:image/gif;base64,R0lGODlhBAAEAJEAAOLi4vDw8Ovr6wAAACH5BAAAAAAALAAAAAAEAAQAAAIHlBIAhmZaAAA7') repeat scroll 0% 0% transparent;
+    }
+    li {
+        list-style: none;
+        margin-bottom: 10px;
+    }
+    a {
+        text-align: center;
+        text-decoration: none;
+        box-sizing: border-box;
+    }
+    .layout {
+        display: table;
+        margin: 40px auto;
+    }
+    .logo {
+        margin: 0 0 20px;
+        width: 315px;
+        height: 86px;
+    }
+    .list {
+        display: block;
+    }
+    .list__item {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .list__item-link {
+        display: block;
+        margin: 0;
+        padding: 10px;
+        font: 20px/20px Arial;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background: #7EC14B;
+        background: linear-gradient(to bottom, #7EC14B, #319926);
+        border-radius: 4px;
+        -webkit-transition: .25s ease-out;
+        -o-transition: .25s ease-out;
+        transition: .25s ease-out;
+    }
+    .list__item .list__item-link:hover {
+        background: #92c700;
+        background: linear-gradient(to bottom, #92c700, #6DA641);
+    }
+    .order-btn {
+        display: block;
+        padding-top: 7px;
+        padding-right: 13px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 26px;
+        font-weight: 400;
+        color: #fff;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        border: none;
 
-	<body>
-		<div class="mainwrap">
-			<header class="header">
-				<div class="header__inner">
-					<div class="header__logo"><span>modus</span>versus</div>
-					<ul class="header__menu">
-						<li class="header__menu-item __active"><a href="javascript:void(0);" class="header__menu-link">home</a></li>
-						<li class="header__menu-item"><a href="javascript:void(0);" class="header__menu-link">about</a></li>
-						<li class="header__menu-item"><a href="javascript:void(0);" class="header__menu-link">services</a></li>
-						<li class="header__menu-item __portfolio"><a href="javascript:void(0);" class="header__menu-link">portfolio</a>
-							<div class="header__dropdown-wrap">
-								<ul class="header__dropdown">
-									<li class="header__dropdown-item"><a href="javascript:void(0);" class="header__dropdown-link">Portfolio 2 column page</a></li>
-									<li class="header__dropdown-item"><a href="javascript:void(0);" class="header__dropdown-link">Portfolio 2 column page</a></li>
-									<li class="header__dropdown-item"><a href="javascript:void(0);" class="header__dropdown-link">Portfolio 2 column page</a></li>
-								</ul>
-							</div>
-						</li>
-						<li class="header__menu-item"><a href="javascript:void(0);" class="header__menu-link">blog</a></li>
-						<li class="header__menu-item"><a href="javascript:void(0);" class="header__menu-link">features</a></li>
-						<li class="header__menu-item"><a href="javascript:void(0);" class="header__menu-link">contacts</a></li>
-					</ul>
-				</div>
-			</header>
-			<div class="content">
-				<div class="content__ttl">Iconfont Example</div>
-				<div class="tw"></div>
-				<div class="content__ttl">Sprite Example</div>
-				<div class="sprite"></div>
-				<div class="content__ttl">Grid Example</div>
-				<div class="grid">
-					<div class="grid__col">1</div>
-					<div class="grid__col">2</div>
-					<div class="grid__col">3</div>
-				</div>
-			</div>
-		</div>
-		<footer class="footer">
-			<div class="footer__inner">Footer</div>
-		</footer>
-		<script src="js/main.js"></script>
-		<script src="http://192.168.0.100:8080/target/target-script-min.js#anonymous"></script>
-	</body>
+        padding-bottom: 5px;
+        -webkit-transition: background .3s, text-shadow .3s;
+        -moz-transition: background .3s, text-shadow .3s;
+        transition: background .3s, text-shadow .3s;
+        cursor: pointer;
+        overflow: hidden;
+        background: #FF7800;
+    }
+    .order-btn:hover {
+        background: #FF8401;
+    }
+    .order-btn:active {
+        background: #F87300;
+    }
+    .order-btn:after {
+        content: '';
+        position: relative;
+        left: 15px;
+        top: 1px;
+        font-family: 'FontAwesome';
+        font-size: 26px;
+        color: #fff;
+    }
+    </style>
+</head>
+
+<body class="page">
+    <div class="layout">
+        <div class="logo"></div>
+        <ul class="list">
+            <li class=""><a href="dist/index.html" class="order-btn">index.html</a> </li>
+            <li class=""><a href="dist/styleguide.html" class="order-btn">styleguide.html</a> </li>
+        </ul>
+    </div>
+</body>
 
 </html>
