@@ -14,23 +14,23 @@ function EventBurrito(a,b){function c(a,b){for(var c in b)b.hasOwnProperty(c)&&(
 var blazy = require('blazy');
 
 new blazy({
-	breakpoints: false,
-	offset: 100,
-	successClass: 'b-loaded',
-	errorClass: 'b-error',
-	selector: 'img[data-src]'
+    breakpoints: false,
+    offset: 100,
+    successClass: 'b-loaded',
+    errorClass: 'b-error',
+    selector: 'img[data-src]'
 });
 
 var slider = document.getElementById('peppermint');
 
 if (slider) {
-	Peppermint(slider, {
-		mouseDrag: true,
-		dots: true,
-		slideshow: true,
-		slideshowInterval: 7000,
-		speed: 500
-	});
+    Peppermint(slider, {
+        mouseDrag: true,
+        dots: true,
+        slideshow: true,
+        slideshowInterval: 7000,
+        speed: 500
+    });
 }
 
 },{"blazy":"c:\\!Development\\webstudio\\node_modules\\blazy\\blazy.js"}],"c:\\!Development\\webstudio\\node_modules\\blazy\\blazy.js":[function(require,module,exports){
