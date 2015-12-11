@@ -21,15 +21,28 @@ new blazy({
     selector: 'img[data-src]'
 });
 
-var slider = document.getElementById('peppermint');
+var sliders = document.querySelectorAll('.js-slider');
 
-if (slider) {
-    Peppermint(slider, {
-        mouseDrag: true,
-        dots: true,
-        slideshow: true,
-        slideshowInterval: 7000,
-        speed: 500
+if (sliders.length) {
+    sliders = Array.prototype.slice.call(sliders);
+
+    sliders.forEach(function (sliderContainer) {
+        var slider = sliderContainer.querySelector('.peppermint'),
+            sliderWidget = Peppermint(slider, {
+            mouseDrag: true,
+            dots: true,
+            slideshow: true,
+            slideshowInterval: 7000,
+            speed: 500
+        }),
+            sliderDots = sliderContainer.querySelector('.peppermint-dots'),
+            leftArr = sliderContainer.querySelector('.slider-prev'),
+            rightArr = sliderContainer.querySelector('.slider-next');
+
+        leftArr.addEventListener('click', sliderWidget.prev, false);
+        rightArr.addEventListener('click', sliderWidget.next, false);
+
+        sliderContainer.appendChild(sliderDots);
     });
 }
 
