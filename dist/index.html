@@ -19,6 +19,10 @@
 				wf.async = 'true';
 				var s = document.getElementsByTagName('script')[0];
 				s.parentNode.insertBefore(wf, s);
+				wf.onerror = function()
+				{
+					document.body.classList && document.body.classList.remove('fonts-hidden')
+				};
 			})()
 		</script>
 		<meta charset="utf-8">
@@ -33,7 +37,7 @@
 		<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.15/es5-shim.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.15/es5-sham.min.js"></script><![endif]-->
 	</head>
 
-	<body>
+	<body class="fonts-hidden">
 		<div class="preload-images"></div>
 		<div class="mainwrap">
 			<header class="header">
@@ -110,6 +114,12 @@
 							<button class="services__list-button">read more</button>
 						</li>
 					</ul>
+				</div>
+			</section>
+			<section class="why">
+				<div class="why__inner">
+					<h1>why modus versus?</h1>
+					<p>Capacitance cascading integer reflective interface data development high bus cache dithering transponder.</p>
 				</div>
 			</section>
 			<div class="content">
