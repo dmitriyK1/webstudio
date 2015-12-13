@@ -190,7 +190,7 @@ function onGalleryClick(e) {
 // GAUGES START
 //=============================================================================
 var gaugeContainers = makeTrueArray(document.querySelectorAll('.js-gauges')),
-    onWindowScroll = debounce(refreshGauges, 200);
+    onWindowScroll = throttle(refreshGauges, 200);
 
 if (gaugeContainers.length) {
     gaugeContainers.forEach(function (gaugeContainer) {
@@ -222,6 +222,8 @@ refreshGauges(300);
 
 function refreshGauges(timeout) {
     var t = typeof timeout === "number" ? timeout : 0;
+
+    console.log('fired');
 
     gaugeContainers.forEach(function (gaugeContainer, i) {
         if (!isOnScreen(gaugeContainer) || gaugeContainer.classList.contains('--animated')) return;
