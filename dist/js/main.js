@@ -223,8 +223,6 @@ refreshGauges(300);
 function refreshGauges(timeout) {
     var t = typeof timeout === "number" ? timeout : 0;
 
-    console.log('fired');
-
     gaugeContainers.forEach(function (gaugeContainer, i) {
         if (!isOnScreen(gaugeContainer) || gaugeContainer.classList.contains('--animated')) return;
 
