@@ -10,8 +10,52 @@ function Peppermint(a,b){function c(a,b){for(var c in b)b.hasOwnProperty(c)&&(a[
 function EventBurrito(a,b){function c(a,b){for(var c in b)b.hasOwnProperty(c)&&(a[c]=b[c])}function d(a,b,c,d){return b?(a.addEventListener?a.addEventListener(b,c,!!d):a.attachEvent("on"+b,c),{remove:function(){e(a,b,c,d)}}):void 0}function e(a,b,c,d){b&&(a.removeEventListener?a.removeEventListener(b,c,!!d):a.detachEvent("on"+b,c))}function f(a){a.preventDefault?a.preventDefault():a.returnValue=!1}function g(a){if(r={x:(o?a.clientX:a.touches[0].clientX)-q.x,y:(o?a.clientY:a.touches[0].clientY)-q.y,time:Number(new Date)-q.time},r.time-t[t.length-1].time){for(var b=0;b<t.length-1&&r.time-t[b].time>80;b++);s={x:(r.x-t[b].x)/(r.time-t[b].time),y:(r.y-t[b].y)/(r.time-t[b].time)},t.length>=5&&t.shift(),t.push({x:r.x,y:r.y,time:r.time})}}function h(a,b){v=!0,o=b,y[o](a)||(d(document,x[o][1],i),d(document,x[o][2],j),d(document,x[o][3],j),m.preventDefault&&o&&f(a),q={x:o?a.clientX:a.touches[0].clientX,y:o?a.clientY:a.touches[0].clientY,time:Number(new Date)},n=void 0,r={x:0,y:0,time:0},s={x:0,y:0},t=[{x:0,y:0,time:0}],m.start(a,q))}function i(a){!m.preventScroll&&n||y[o](a)||(g(a),(Math.abs(r.x)>m.clickTolerance||Math.abs(r.y)>m.clickTolerance)&&(v=!1),void 0===n&&3!==o&&(n=Math.abs(r.x)<Math.abs(r.y)&&!m.preventScroll)||(m.preventDefault&&f(a),m.move(a,q,r,s)))}function j(a){o&&g(a),!v&&a.target&&a.target.blur&&a.target.blur(),e(document,x[o][1],i),e(document,x[o][2],j),e(document,x[o][3],j),m.end(a,q,r,s)}function k(){u.push(d(a,x[w][0],function(a){h(a,w)})),u.push(d(a,"dragstart",f)),m.mouse&&!w&&u.push(d(a,x[3][0],function(a){h(a,3)})),u.push(d(a,"click",function(a){v?m.click(a):f(a)}))}var l=function(){},m={preventDefault:!0,clickTolerance:0,preventScroll:!1,mouse:!0,start:l,move:l,end:l,click:l};b&&c(m,b);var n,o,p={pointerEvents:!!window.navigator.pointerEnabled,msPointerEvents:!!window.navigator.msPointerEnabled},q={},r={},s={},t=[],u=[],v=!0,w=p.pointerEvents?1:p.msPointerEvents?2:0,x=[["touchstart","touchmove","touchend","touchcancel"],["pointerdown","pointermove","pointerup","pointercancel"],["MSPointerDown","MSPointerMove","MSPointerUp","MSPointerCancel"],["mousedown","mousemove","mouseup",!1]],y=[function(a){return a.touches&&a.touches.length>1||a.scale&&1!==a.scale},function(a){return!a.isPrimary||a.buttons&&1!==a.buttons||!m.mouse&&"touch"!==a.pointerType&&"pen"!==a.pointerType},function(a){return!a.isPrimary||a.buttons&&1!==a.buttons||!m.mouse&&a.pointerType!==a.MSPOINTER_TYPE_TOUCH&&a.pointerType!==a.MSPOINTER_TYPE_PEN},function(a){return a.buttons&&1!==a.buttons}];return k(),{getClicksAllowed:function(){return v},kill:function(){for(var a=u.length-1;a>=0;a--)u[a].remove()}}}
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"c:\\!Development\\webstudio\\dev\\scripts\\main.js":[function(require,module,exports){
 'use strict';
+
 //=============================================================================
-// LAZY-LOAD START
+// UTILITY FUNCTIONS START
+//=============================================================================
+function makeTrueArray(arrayLikeObject) {
+    return Array.prototype.slice.call(arrayLikeObject);
+}
+
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+        var context = this,
+            args = arguments;
+        var later = function later() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
+function throttle(callback, limit) {
+    var wait = false;
+    return function (e) {
+        if (!wait) {
+            callback.apply(this, arguments);
+            wait = true;
+            setTimeout(function () {
+                wait = false;
+            }, limit);
+        }
+    };
+}
+
+// TODO: make object with utility methods instead
+
+//=============================================================================
+// UTILITY FUNCTIONS END
+//=============================================================================
+//=============================================================================
+
+//=============================================================================
+// IMAGES LAZY-LOAD START
 //=============================================================================
 var blazy = require('blazy');
 
@@ -23,7 +67,7 @@ new blazy({
     selector: 'img[data-src]'
 });
 //=============================================================================
-// LAZY-LOAD END
+// IMAGES LAZY-LOAD END
 //=============================================================================
 
 //=============================================================================
@@ -32,7 +76,7 @@ new blazy({
 var sliders = document.querySelectorAll('.js-slider');
 
 if (sliders.length) {
-    sliders = Array.prototype.slice.call(sliders);
+    sliders = makeTrueArray(sliders);
 
     sliders.forEach(function (sliderContainer) {
         var slider = sliderContainer.querySelector('.peppermint'),
@@ -60,24 +104,33 @@ if (sliders.length) {
 //=============================================================================
 // WHY BLOCK GALLERY START
 //=============================================================================
+var gallery = document.querySelector('.why__gallery'),
+    onGalleryClick = throttle(onGalleryClick, 250);
 
-var gallery = document.querySelector('.why__gallery');
-
-gallery.addEventListener('click', onGalleryClick, false);
+gallery && gallery.addEventListener('click', onGalleryClick, false);
 
 function onGalleryClick(e) {
     var gallery = this,
-        target = e.target,
-        isGalleryItemClicked = target.classList.contains('why__gallery-item');
+        target = e.target;
 
-    if (isGalleryItemClicked) {
-        var activeGalleryItem = gallery.querySelector('.--active');
-        activeGalleryItem.classList.remove('--active');
+    if (target === this) return;
 
-        target.classList.add('--active');
+    while (target && target.parentElement) {
+        if (!target || target.classList.contains('--active')) return;
+
+        if (target.classList.contains('why__gallery-item')) break;
+
+        target = target.parentElement;
     }
-}
 
+    var activeGalleryItems = gallery.querySelectorAll('.--active');
+    activeGalleryItems = makeTrueArray(activeGalleryItems);
+    activeGalleryItems.forEach(function (item) {
+        item.classList.remove('--active');
+    });
+
+    target.classList.add('--active');
+}
 //=============================================================================
 // WHY BLOCK GALLERY END
 //=============================================================================
