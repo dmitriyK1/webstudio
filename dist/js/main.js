@@ -29,6 +29,8 @@ break;case"opacity":k.gradient&&!k[b]("stroke-opacity")&&q(i,{"stroke-opacity":p
 // UTILITY FUNCTIONS START
 //=============================================================================
 function makeTrueArray(arrayLikeObject) {
+    if (!arrayLikeObject) return;
+
     return Array.prototype.slice.call(arrayLikeObject);
 }
 
@@ -168,37 +170,54 @@ function onGalleryClick(e) {
 // WHY BLOCK GALLERY END
 //=============================================================================
 
-var gauges = document.querySelectorAll('.js-gauge');
+//=============================================================================
+// GAUGES START
+//=============================================================================
+var gaugeContainers = makeTrueArray(document.querySelectorAll('.js-gauges')),
+    onWindowScroll = throttle(refreshGauges, 300);
 
-gauges && (gauges = makeTrueArray(gauges)) && gauges.forEach(function (gauge) {
-    gauge.id = 'gaugeId' + Math.random(0, 1) * 10e17;
+if (gaugeContainers.length) {
+    gaugeContainers.forEach(function (gaugeContainer) {
+        var gauges = makeTrueArray(gaugeContainer.querySelectorAll('.js-gauge'));
 
-    var g = new JustGage({
-        id: gauge.id,
-        gaugeColor: '#76C7C0',
-        levelColors: ['#E2534B'],
-        hideInnerShadow: true,
-        hideMinMax: true,
-        valueMinFontSize: 30,
-        valueFontColor: '#7f8c8c',
-        counter: true,
-        value: 0
+        gauges.forEach(function (gauge) {
+            gauge.id = 'gaugeId' + Math.random(0, 1) * 10e17;
+
+            var widget = new JustGage({
+                id: gauge.id,
+                gaugeColor: '#76C7C0',
+                levelColors: ['#E2534B'],
+                hideInnerShadow: true,
+                hideMinMax: true,
+                valueMinFontSize: 30,
+                valueFontColor: '#7f8c8c',
+                counter: true,
+                value: 0
+            });
+
+            gauge.widget = widget;
+        });
     });
+}
 
-    if (isOnScreen(gauge)) {
-        setTimeout(function () {
-            g.refresh(gauge.dataset.gaugeValue);
-        }, 500);
-    }
+window.addEventListener('scroll', onWindowScroll, false);
 
-    window.addEventListener('scroll', function () {
-        if (isOnScreen(gauge)) {
+refreshGauges();
+
+function refreshGauges() {
+    gaugeContainers.forEach(function (gaugeContainer) {
+        if (!isOnScreen(gaugeContainer)) return;
+        var gauges = makeTrueArray(gaugeContainer.querySelectorAll('.js-gauge'));
+        gauges.forEach(function (gauge) {
             setTimeout(function () {
-                g.refresh(gauge.dataset.gaugeValue);
-            }, 300);
-        }
-    }, false);
-});
+                gauge.widget.refresh(gauge.dataset.gaugeValue);
+            }, 500);
+        });
+    });
+}
+//=============================================================================
+// GAUGES END
+//=============================================================================
 
 },{"blazy":"c:\\!Development\\webstudio\\node_modules\\blazy\\blazy.js"}],"c:\\!Development\\webstudio\\node_modules\\blazy\\blazy.js":[function(require,module,exports){
 
