@@ -47,6 +47,22 @@ function throttle(callback, limit) {
     };
 }
 
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+        var context = this,
+            args = arguments;
+        var later = function later() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
 function isOnScreen(elm) {
     var vpH = viewPortHeight(),
         st = scrollY(),
@@ -174,7 +190,7 @@ function onGalleryClick(e) {
 // GAUGES START
 //=============================================================================
 var gaugeContainers = makeTrueArray(document.querySelectorAll('.js-gauges')),
-    onWindowScroll = throttle(refreshGauges, 300);
+    onWindowScroll = debounce(refreshGauges, 200);
 
 if (gaugeContainers.length) {
     gaugeContainers.forEach(function (gaugeContainer) {
@@ -202,16 +218,25 @@ if (gaugeContainers.length) {
 
 window.addEventListener('scroll', onWindowScroll, false);
 
-refreshGauges();
+refreshGauges(300);
 
-function refreshGauges() {
-    gaugeContainers.forEach(function (gaugeContainer) {
-        if (!isOnScreen(gaugeContainer)) return;
+function refreshGauges(timeout) {
+    var t = typeof timeout === "number" ? timeout : 0;
+
+    console.log('fired');
+
+    gaugeContainers.forEach(function (gaugeContainer, i) {
+        if (!isOnScreen(gaugeContainer) || gaugeContainer.classList.contains('--animated')) return;
+
+        gaugeContainer.classList.add('--animated');
+        gaugeContainers.splice(i, 1);
+        if (!gaugeContainers.length) window.removeEventListener('scroll', onWindowScroll);
+
         var gauges = makeTrueArray(gaugeContainer.querySelectorAll('.js-gauge'));
         gauges.forEach(function (gauge) {
             setTimeout(function () {
                 gauge.widget.refresh(gauge.dataset.gaugeValue);
-            }, 500);
+            }, t);
         });
     });
 }
