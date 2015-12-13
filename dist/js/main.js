@@ -18,22 +18,6 @@ function makeTrueArray(arrayLikeObject) {
     return Array.prototype.slice.call(arrayLikeObject);
 }
 
-function debounce(func, wait, immediate) {
-    var timeout;
-    return function () {
-        var context = this,
-            args = arguments;
-        var later = function later() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-    };
-}
-
 function throttle(callback, limit) {
     var wait = false;
     return function (e) {
@@ -113,21 +97,16 @@ function onGalleryClick(e) {
     var gallery = this,
         target = e.target;
 
-    if (target === this) return;
+    if (target === this || target.classList.contains('--active')) return;
 
     while (target && target.parentElement) {
-        if (!target || target.classList.contains('--active')) return;
-
+        if (!target) return;
         if (target.classList.contains('why__gallery-item')) break;
-
         target = target.parentElement;
     }
 
-    var activeGalleryItems = gallery.querySelectorAll('.--active');
-    activeGalleryItems = makeTrueArray(activeGalleryItems);
-    activeGalleryItems.forEach(function (item) {
-        item.classList.remove('--active');
-    });
+    var activeGalleryItem = gallery.querySelector('.--active');
+    activeGalleryItem.classList.remove('--active');
 
     target.classList.add('--active');
 }
