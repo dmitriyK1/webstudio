@@ -189,10 +189,12 @@ function onGalleryClick(e) {
 //=============================================================================
 // GAUGES START
 //=============================================================================
-var gaugeContainers = makeTrueArray(document.querySelectorAll('.js-gauges')),
-    onWindowScroll = throttle(refreshGauges, 200);
+var gaugeContainers = document.querySelectorAll('.js-gauges');
 
 if (gaugeContainers.length) {
+    var onWindowScroll = debounce(refreshGauges, 200);
+    gaugeContainers = makeTrueArray(gaugeContainers);
+
     gaugeContainers.forEach(function (gaugeContainer) {
         var gauges = makeTrueArray(gaugeContainer.querySelectorAll('.js-gauge'));
 
@@ -214,16 +216,13 @@ if (gaugeContainers.length) {
             gauge.widget = widget;
         });
     });
+
+    refreshGauges(300);
+    window.addEventListener('scroll', onWindowScroll, false);
 }
-
-window.addEventListener('scroll', onWindowScroll, false);
-
-refreshGauges(300);
 
 function refreshGauges(timeout) {
     var t = typeof timeout === "number" ? timeout : 0;
-
-    console.log('fired');
 
     gaugeContainers.forEach(function (gaugeContainer, i) {
         if (!isOnScreen(gaugeContainer) || gaugeContainer.classList.contains('--animated')) return;
